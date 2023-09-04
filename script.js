@@ -32,6 +32,11 @@ function onAddItemSubmit(e) {
         itemToEdit.classList.remove('edit-mode');
         itemToEdit.remove();
         isEditMode = false     
+    } else {
+        if (checkIfItemExists(newItem)) {
+            alert('That item alredy exists!');
+            return
+        }
     }
 
     //Create item DOM element
@@ -103,6 +108,12 @@ function onClickItem(e) {
     }
 
 }
+
+function checkIfItemExists(item) {
+    const itemFromStorage = getItemsFromStorage();
+    return itemFromStorage.includes(item);
+}
+
 
 function setItemToEdit(item) {
     isEditMode = true;
